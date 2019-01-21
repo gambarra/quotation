@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="GraphQL\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Quotation.Domain\Quotation.Domain.csproj" />
+    <ProjectReference Include="..\..\Quotation.Infra.Mapper\Quotation.Infra.Mapper.csproj" />
+  </ItemGroup>
+
+</Project>
