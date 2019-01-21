@@ -12,6 +12,7 @@ namespace Quotation.Domain.Aggregates.CurrencyAgg {
             this.UpdatedAt = this.CreatedAt;
             RaiseEvent(new CurrencyCreatedEvent(this));
         }
+        
         public string Name { get; private set; }
         public string IsoCode { get; private set; }
         public DateTime CreatedAt { get; private set; }

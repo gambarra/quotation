@@ -9,10 +9,12 @@ namespace Quotation.Domain.Seedwork {
         public Entity() {
          
             this.events = new List<INotification>();
+            this.Key = Guid.NewGuid();
         }
         private readonly List<INotification> events;
 
         public int Id { get; private set; }
+        public Guid Key { get; private set; }
 
 
         public IReadOnlyCollection<INotification> Events => events;

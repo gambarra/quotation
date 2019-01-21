@@ -7,21 +7,15 @@ using System.Data.SqlClient;
 namespace Quotation.Infra.Data.Seedwork {
     public class UnitOfWork : IUnitOfWork {
 
-        private readonly DbTransaction transaction;
-        private readonly DbConnection connection;
 
-        public UnitOfWork(string connectionString) {
-            this.connection = new SqlConnection(connectionString);
-            this.transaction = connection.BeginTransaction(isolationLevel: System.Data.IsolationLevel.ReadUncommitted);
+        private readonly Context context;
+        public UnitOfWork(Context context) {
+            this.context = context;
         }
 
-        public void Commit() => transaction.Commit();
+        public void Commit() => context.SaveChanges();
 
-        public IDbConnection DbConnection() => connection;
-
-        public void Dispose() => transaction.Rollback();
-
-        public void Rollback() => transaction.Rollback(); 
-        
+        public IDbConnection DbConnection() => context.GetConnection();
+    
     }
 }

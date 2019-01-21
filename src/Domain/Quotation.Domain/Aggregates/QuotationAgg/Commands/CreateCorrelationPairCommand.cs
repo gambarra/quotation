@@ -2,10 +2,10 @@
 using System;
 
 namespace Quotation.Domain.Aggregates.QuotationAgg.Commands {
-    public class CreateCorrelationPairCommand : ICommand<CorrelationPair> {
+    public class CreateCorrelationPairCommand : Command<CommandResult<CorrelationPair>> {
 
-        public Guid BaseCurrencyId { get; set; }
-        public Guid QuoteCurrencyId { get; set; }
+        public int BaseCurrencyId { get; set; }
+        public int QuoteCurrencyId { get; set; }
         public decimal Coefficient { get; set; }
 
         public bool IsValid() {

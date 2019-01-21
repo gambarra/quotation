@@ -2,10 +2,10 @@
 using System.Data;
 
 namespace Quotation.Domain.Seedwork {
-    public interface IUnitOfWork:IDisposable {
+    public interface IUnitOfWork {
    
         void Commit();
-        void Rollback();
+    
         IDbConnection DbConnection();
     }
 }

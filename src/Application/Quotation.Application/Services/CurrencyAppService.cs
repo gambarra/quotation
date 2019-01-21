@@ -25,8 +25,10 @@ namespace Quotation.Application.Services {
             throw new NotImplementedException();
         }
 
-        public Task<UpdateCurrencyResponse> UpdateAsync(UpdateCurrencyRequest request) {
-            throw new NotImplementedException();
+        public async Task<UpdateCurrencyResponse> UpdateAsync(UpdateCurrencyRequest request) {
+            var command = request.ProjectedAs<UpdateCurrencyCommand>();
+            var response = await mediator.Send(command);
+            return response.ProjectedAs<UpdateCurrencyResponse>();
         }
     }
 }
