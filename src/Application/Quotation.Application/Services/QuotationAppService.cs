@@ -21,18 +21,20 @@ namespace Quotation.Application.Services {
 
             this.currencyRepository = currencyRepository;
             this.mediator = mediator;
-          
+
         }
         public async Task<CreateCorrelationPairResponse> CreateAsync(CreateCorrelationPairRequest request) {
 
-            var baseCurrency =  currencyRepository.FindOneAsync(p => p.IsoCode == request.BaseCurrency.ToLower()).Result;
+            var baseCurrency = currencyRepository.FindOneAsync(p => p.IsoCode == request.BaseCurrency.ToUpper()).Result;
             if (baseCurrency == null)
-                throw new ArgumentException("Base Currency Not Exits");
+                return new CreateCorrelationPairResponse()
+                    .AddError<CreateCorrelationPairResponse>("Base Currency Not Exits");
 
-            var quoteCurrency = currencyRepository.FindOneAsync(p => p.IsoCode == request.QuoteCurrency.ToLower()).Result;
+            var quoteCurrency = currencyRepository.FindOneAsync(p => p.IsoCode == request.QuoteCurrency.ToUpper()).Result;
             if (quoteCurrency == null)
-                throw new ArgumentException("Quote Currency Not Exits");
-
+                return new CreateCorrelationPairResponse()
+                   .AddError<CreateCorrelationPairResponse>("Quote Currency Not Exits");
+          
             var command = request.ProjectedAs<CreateCorrelationPairCommand>();
             command.BaseCurrencyId = baseCurrency.Id;
             command.QuoteCurrencyId = quoteCurrency.Id;

@@ -15,7 +15,15 @@ namespace Quotation.Domain.Aggregates.QuotationAgg.Handlers {
             this.correlationPairRepository = correlationPairRepository;
         }
         public async Task<CommandResult<CorrelationPair>> Handle(CreateCorrelationPairCommand request, CancellationToken cancellationToken) {
-            var correlation = new CorrelationPair(request.BaseCurrencyId, request.QuoteCurrencyId, request.Coefficient);
+
+            var correlation = await correlationPairRepository.FindOneAsync(p => p.BaseCurrencyId == request.BaseCurrencyId
+                                                                            && p.QuoteCurrencyId == request.QuoteCurrencyId 
+                                                                            && p.CreatedAt == request.QuotationDate.Date);
+
+            if(correlation!=null)
+                return CommandResult<CorrelationPair>.Fail(correlation, "CorrelationPair already exists");
+
+            correlation = new CorrelationPair(request.BaseCurrencyId, request.QuoteCurrencyId, request.Coefficient, request.QuotationDate);
             await correlationPairRepository.Add(correlation);
             return CommandResult<CorrelationPair>.Success(correlation);
         }

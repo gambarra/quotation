@@ -15,11 +15,11 @@ namespace Quotation.Application.Profiles {
         private void MapCreateCurrency() {
             CreateMap<CreateCurrencyRequest, CreateCurrencyCommand>()
                 .ForMember(d => d.Name, opt => opt.MapFrom(o => o.Name))
-                .ForMember(d => d.CurrencyIso, opt => opt.MapFrom(o => o.CurrencyIso));
+                .ForMember(d => d.CurrencyIso, opt => opt.MapFrom(o => o.CurrencyIso.ToUpper()));
 
             CreateMap<CommandResult<Currency>, CreateCurrencyResponse>()
                 .ForMember(d => d.Success, opt => opt.MapFrom(o => o.IsSuccess))
-                .ForMember(d => d.Error, opt => opt.MapFrom(o => o.Erros));
+                .ForMember(d => d.Erros, opt => opt.MapFrom(o => o.Erros));
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Quotation.Api.Controllers {
             if (response.Success)
                 return Ok(response);
             else
-                return BadRequest(response.Error);
+                return BadRequest(response.Erros);
         }
 
     }
