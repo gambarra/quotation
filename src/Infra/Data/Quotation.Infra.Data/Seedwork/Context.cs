@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Quotation.Domain.Aggregates.CurrencyAgg;
+using Quotation.Domain.Aggregates.QuotationAgg;
 using Quotation.Infra.Data.Mapping;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -9,9 +11,15 @@ namespace Quotation.Infra.Data.Seedwork {
     public class Context : DbContext {
 
         private DbConnection connection;
-      
+
+        public DbSet<Currency> Currency { get; set; }
+        public DbSet<CorrelationPair> CorrelationPair { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             
+            modelBuilder.ForSqlServerUseIdentityColumns();
+            modelBuilder.HasDefaultSchema("Quotation");
+
             modelBuilder.ApplyConfiguration(new CurrencyMap());
             modelBuilder.ApplyConfiguration(new CorrelationPairMap());
             base.OnModelCreating(modelBuilder);

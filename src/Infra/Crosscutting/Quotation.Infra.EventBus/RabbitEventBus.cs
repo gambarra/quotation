@@ -15,7 +15,7 @@ namespace Quotation.Infra.EventBus {
             this.rabbitConnection = rabbitConnection;
         }
 
-        public void AddEvent<T>(Event<T> @event) {
+        public void AddEvent(IEvent @event) {
 
             var json = Serialize(@event);
             var channel = rabbitConnection.GetModel();
@@ -31,11 +31,11 @@ namespace Quotation.Infra.EventBus {
             );
         }
 
-        public void AddEvents<T>(IReadOnlyCollection<Event<T>> events) {
-            events.ToList().ForEach(p => this.AddEvent<T>(p));
+        public void AddEvents(IReadOnlyCollection<IEvent> events) {
+            events.ToList().ForEach(p => this.AddEvent(p));
         }
 
-        private string Serialize<T>(Event<T> @event) => JsonConvert.SerializeObject(
+        private string Serialize(IEvent @event) => JsonConvert.SerializeObject(
            value: @event,
            formatting: Formatting.None,
            settings: new JsonSerializerSettings() {

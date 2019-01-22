@@ -6,8 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace Quotation.Domain.Aggregates.QuotationAgg.Handlers {
-    class CorrelationPairCommandHandler :
-        IRequestHandler<CreateCorrelationPairCommand, CommandResult<CorrelationPair>> {
+    public class CorrelationPairCommandHandler :
+         IRequestHandler<CreateCorrelationPairCommand, CommandResult<CorrelationPair>> {
 
         private readonly ICorrelationPairRepository correlationPairRepository;
 

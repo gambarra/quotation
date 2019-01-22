@@ -1,8 +1,12 @@
-﻿namespace Quotation.Application.Models {
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+
+namespace Quotation.Application.Models {
     public abstract class BaseResponse {
 
-        public abstract bool IsSuccess();
-        public string Error { get; protected set; }
+        [JsonIgnore]
+        public bool Success { get; protected set; }
+        public IList<string> Error { get; protected set; }
 
     }
 }

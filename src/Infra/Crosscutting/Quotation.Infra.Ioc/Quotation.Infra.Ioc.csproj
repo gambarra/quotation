@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Application\Quotation.Application\Quotation.Application.csproj" />
+    <ProjectReference Include="..\..\..\Domain\Quotation.Domain\Quotation.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Quotation.Infra.Mapper\Quotation.Infra.Mapper.csproj" />
+    <ProjectReference Include="..\..\Data\Quotation.Infra.Data\Quotation.Infra.Data.csproj" />
+    <ProjectReference Include="..\Quotation.Infra.EventBus\Quotation.Infra.EventBus.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MediatR.Extensions.Microsoft.DependencyInjection">
+      <HintPath>..\..\..\..\..\..\..\github\MediatR.Extensions.Microsoft.DependencyInjection\src\MediatR.Extensions.Microsoft.DependencyInjection\bin\Debug\netstandard2.0\MediatR.Extensions.Microsoft.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.dependencyinjection.abstractions\2.1.1\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

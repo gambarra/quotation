@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Quotation.Application.Models;
+using Quotation.Application.Models.Currency;
 using Quotation.Application.Services.Interfaces;
 using Quotation.Domain.Aggregates.CurrencyAgg.Commands;
 using Quotation.Infra.Mapper;
@@ -21,9 +22,7 @@ namespace Quotation.Application.Services {
             return response.ProjectedAs<CreateCurrencyResponse>();
         }
 
-        public void Dispose() {
-            throw new NotImplementedException();
-        }
+
 
         public async Task<UpdateCurrencyResponse> UpdateAsync(UpdateCurrencyRequest request) {
             var command = request.ProjectedAs<UpdateCurrencyCommand>();

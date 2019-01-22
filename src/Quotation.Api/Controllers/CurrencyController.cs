@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Quotation.Application.Models;
+using Quotation.Application.Models.Currency;
 using Quotation.Application.Services.Interfaces;
 
 namespace Quotation.Api.Controllers {
@@ -20,9 +21,9 @@ namespace Quotation.Api.Controllers {
         private readonly ICurrencyAppService currencyAppService;
 
         [HttpPost]
-        public async Task<ActionResult<bool>> Create(CreateCurrencyRequest request) {
+        public async Task<ActionResult<BaseResponse>> Create(CreateCurrencyRequest request) {
             var response = await currencyAppService.CreateAsync(request);
-            if (response.IsSuccess())
+            if (response.Success)
                 return Ok(response);
             else
                 return BadRequest(response.Error);

@@ -1,29 +1,30 @@
-﻿using Quotation.Domain.Aggregates.CurrencyAgg;
+﻿using Microsoft.EntityFrameworkCore;
+using Quotation.Domain.Aggregates.CurrencyAgg;
 using Quotation.Domain.Aggregates.CurrencyAgg.Repository;
 using Quotation.Domain.Seedwork;
+using Quotation.Infra.Data.Seedwork;
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Quotation.Infra.Data.Repositories {
-    public class CurrencyRepository : ICurrencyRepository {
+    public class CurrencyRepository : BaseRepository<Currency>, ICurrencyRepository {
 
-        public CurrencyRepository(IUnitOfWork unitOfWork) {
-            this.unitOfWork = unitOfWork;
+        public CurrencyRepository(Context context, IUnitOfWork unitOfWork) : base(context, unitOfWork) {
         }
 
-        private readonly IUnitOfWork unitOfWork;
-
         public Task Add(Currency entity) {
-            throw new NotImplementedException();
+            return DbSet.AddAsync(entity);
         }
 
         public Task<Currency> FindOneAsync(Expression<Func<Currency, bool>> filter) {
-            throw new NotImplementedException();
+            IQueryable<Currency> set = DbSet;
+            return set.FirstOrDefaultAsync(filter);
         }
 
-        public Task Update(Currency entity) {
-            throw new NotImplementedException();
+        public void Update(Currency entity) {
+            DbSet.Update(entity);
         }
     }
 }

@@ -2,7 +2,7 @@
 using System;
 
 namespace Quotation.Domain.Aggregates.QuotationAgg.Commands {
-    public class CreateCorrelationPairCommand : Command<CommandResult<CorrelationPair>> {
+    public class CreateCorrelationPairCommand : ICommand<CommandResult<CorrelationPair>> {
 
         public int BaseCurrencyId { get; set; }
         public int QuoteCurrencyId { get; set; }

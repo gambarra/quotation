@@ -1,5 +1,5 @@
 ﻿namespace Quotation.Infra.Mapper {
-    class AutoMapperTypeAdapter : ITypeAdapter {
+    public class AutoMapperTypeAdapter : ITypeAdapter {
 
 
         public TTarget Adapt<TTarget>(object source) where TTarget : class {

@@ -21,7 +21,13 @@ namespace Quotation.Domain.Aggregates.CurrencyAgg.Handlers {
 
         public async Task<CommandResult<Currency>> Handle(CreateCurrencyCommand request, CancellationToken cancellationToken) {
 
-            var currency = new Currency(request.Name, request.CurrencyIso);
+            var currency = await currencyRepository.FindOneAsync(p => p.IsoCode.Equals(request.CurrencyIso.ToLower()));
+
+            if (currency != null)
+                return CommandResult<Currency>.Fail(currency, "IsoCode already exists");
+
+            currency = new Currency(request.Name, request.CurrencyIso);
+
             await currencyRepository.Add(currency);
             unitOfWork.Commit();
             PublishEvents(currency);
@@ -35,9 +41,9 @@ namespace Quotation.Domain.Aggregates.CurrencyAgg.Handlers {
 
             if (currency == null)
                 return CommandResult<Currency>.Fail(currency, "IsoCode not exist");
-        
+
             currency.Update(request.Name);
-            await currencyRepository.Update(currency);
+            currencyRepository.Update(currency);
             unitOfWork.Commit();
             PublishEvents(currency);
 

@@ -5,6 +5,9 @@ using System;
 namespace Quotation.Domain.Aggregates.CurrencyAgg {
     public class Currency : Entity {
 
+        private Currency() {
+
+        }
         public Currency(string name, string isoCode):base() {
             this.Name = name;
             this.IsoCode = isoCode;

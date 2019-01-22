@@ -9,7 +9,7 @@ namespace Quotation.Domain.Seedwork {
         private readonly IEventBus eventBus;
 
         protected void PublishEvents(TEntity entity) {
-            eventBus.AddEvents<TEntity>((IReadOnlyCollection<Event<TEntity>>)entity.Events);
+            eventBus.AddEvents(entity.Events);
         }
     }
 }
