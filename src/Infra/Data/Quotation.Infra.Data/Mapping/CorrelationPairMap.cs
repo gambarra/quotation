@@ -14,6 +14,7 @@ namespace Quotation.Infra.Data.Mapping {
             builder.Property(p => p.Coefficient).IsRequired();
             builder.Property(p => p.QuoteCurrencyId).IsRequired();
             builder.Property(p => p.BaseCurrencyId).IsRequired();
+            builder.ToTable("CorrelationPair");
 
         }
     }

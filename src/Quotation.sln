@@ -27,9 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crosscutting", "Crosscuttin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotation.Infra.Mapper", "Quotation.Infra.Mapper\Quotation.Infra.Mapper.csproj", "{A1AE1671-8B79-4DF9-B2C6-21D7D2459A51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quotation.Infra.EventBus", "Infra\Crosscutting\Quotation.Infra.EventBus\Quotation.Infra.EventBus.csproj", "{6D5307F8-BE88-41EA-84D1-FBE2B680D744}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotation.Infra.EventBus", "Infra\Crosscutting\Quotation.Infra.EventBus\Quotation.Infra.EventBus.csproj", "{6D5307F8-BE88-41EA-84D1-FBE2B680D744}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quotation.Infra.Ioc", "Infra\Crosscutting\Quotation.Infra.Ioc\Quotation.Infra.Ioc.csproj", "{9DFF0C53-FF69-4C29-8C1D-E09FD421D562}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotation.Infra.Ioc", "Infra\Crosscutting\Quotation.Infra.Ioc\Quotation.Infra.Ioc.csproj", "{9DFF0C53-FF69-4C29-8C1D-E09FD421D562}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quotation.Queries", "Quotataion.Queries\Quotation.Queries.csproj", "{84FAE448-38C4-4938-B070-E585F800E262}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{9DFF0C53-FF69-4C29-8C1D-E09FD421D562}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DFF0C53-FF69-4C29-8C1D-E09FD421D562}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DFF0C53-FF69-4C29-8C1D-E09FD421D562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84FAE448-38C4-4938-B070-E585F800E262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84FAE448-38C4-4938-B070-E585F800E262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84FAE448-38C4-4938-B070-E585F800E262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84FAE448-38C4-4938-B070-E585F800E262}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +90,7 @@ Global
 		{A1AE1671-8B79-4DF9-B2C6-21D7D2459A51} = {9728D45D-2B30-479A-8C9D-6797A03E3C47}
 		{6D5307F8-BE88-41EA-84D1-FBE2B680D744} = {9728D45D-2B30-479A-8C9D-6797A03E3C47}
 		{9DFF0C53-FF69-4C29-8C1D-E09FD421D562} = {9728D45D-2B30-479A-8C9D-6797A03E3C47}
+		{84FAE448-38C4-4938-B070-E585F800E262} = {D1B56AD4-F9E4-4643-BF84-30E20CC6EEB6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D812B830-817C-4F96-A766-7CF53A69CB43}

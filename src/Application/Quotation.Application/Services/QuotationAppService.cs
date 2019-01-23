@@ -1,10 +1,15 @@
-﻿using MediatR;
+﻿using GraphQL;
+using GraphQL.Types;
+using MediatR;
+using Quotation.Application.GraphQL.Queries;
 using Quotation.Application.Models;
 using Quotation.Application.Services.Interfaces;
 using Quotation.Domain.Aggregates.CurrencyAgg.Repository;
 using Quotation.Domain.Aggregates.QuotationAgg.Commands;
 using Quotation.Domain.Aggregates.QuotationAgg.Repository;
 using Quotation.Infra.Mapper;
+using Quotation.Queries.Aggregates.QuotationAgg.Models;
+using Quotation.Queries.Aggregates.QuotationAgg.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,12 +19,15 @@ namespace Quotation.Application.Services {
     public class QuotationAppService : IQuotationAppService {
 
         private readonly ICurrencyRepository currencyRepository;
+        private readonly IQuotationQueriesRepository quotationQueriesRepository;
         private readonly IMediator mediator;
 
         public QuotationAppService(ICurrencyRepository currencyRepository,
+            IQuotationQueriesRepository quotationQueriesRepository,
             IMediator mediator) {
 
             this.currencyRepository = currencyRepository;
+            this.quotationQueriesRepository = quotationQueriesRepository;
             this.mediator = mediator;
 
         }
@@ -41,6 +49,21 @@ namespace Quotation.Application.Services {
 
             var response = await mediator.Send(command);
             return response.ProjectedAs<CreateCorrelationPairResponse>();
+        }
+
+        public async Task<ExecutionResult> GetQuotations(GraphQLQuery query) {
+            var inputs = query.Variables.ToInputs();
+
+            var schema = new Schema() {
+                Query = new QuotationQuery(this.quotationQueriesRepository)
+            };
+
+            return await new DocumentExecuter().ExecuteAsync(_ => {
+                _.Schema = schema;
+                _.Query = query.Query;
+                _.OperationName = query.OperationName;
+                _.Inputs = inputs;
+            });
         }
     }
 }

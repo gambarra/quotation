@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Quotation.Application.GraphQL.Queries;
 using Quotation.Application.Models;
 using Quotation.Application.Services.Interfaces;
 using System;
@@ -24,6 +25,16 @@ namespace Quotation.Api.Controllers {
                 return Ok(response);
             else
                 return BadRequest(response.Erros);
+        }
+        
+        [HttpPost("query")]
+        public  async Task<IActionResult> Post([FromBody]GraphQLQuery query) {
+            var result = await quotationAppService.GetQuotations(query);
+
+            if (result.Errors?.Count > 0) {
+                return BadRequest();
+            }
+            return Ok(result);
         }
     }
 }

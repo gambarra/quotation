@@ -14,6 +14,7 @@ namespace Quotation.Infra.Data.Mapping {
             builder.Property(p => p.UpdatedAt).IsRequired();
             builder.Property(p => p.CreatedAt).IsRequired();
             builder.Ignore(p => p.Events);
+            builder.ToTable("Currency");
         }
     }
 }
