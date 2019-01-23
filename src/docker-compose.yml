@@ -13,9 +13,14 @@ services:
     networks:
       - dockersql-network
     depends_on:
-      - sql.database
-      sql.database:
-  container_name: dockersql.database
-    image: microsoft/mssql-server-linux:2017-latest
+      - db
+  db:
+    container_name: dockersqldatabase
+    image: microsoft/mssql-server-linux
     networks:
-      - dockersql-network
+        - dockersql-network
+    environment:
+      - SA_PASSWORD=123mudar...
+      - ACCEPT_EULA=Y
+    ports:
+      - "1401:1433"

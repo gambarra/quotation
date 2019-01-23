@@ -31,8 +31,7 @@ namespace Quotation.Infra.Ioc {
                .AddTransient<IQuotationAppService, QuotationAppService>();
 
 
-            services
-               .AddMediatR(typeof(Entity));
+            services.AddMediatR(typeof(Entity));
 
             var sp = services.BuildServiceProvider();
             

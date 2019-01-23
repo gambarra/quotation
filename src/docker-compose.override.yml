@@ -6,7 +6,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
-  sql.database:
+  db:
     environment:
       - SA_PASSWORD=123mudar...
       - ACCEPT_EULA=Y
