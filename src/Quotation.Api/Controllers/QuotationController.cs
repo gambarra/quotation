@@ -25,7 +25,7 @@ namespace Quotation.Api.Controllers {
 
             var response = await quotationAppService.CreateAsync(request);
             if (response.Success)
-                return Ok(response);
+                return StatusCode(201);
             else
                 return BadRequest(response.Erros);
         }

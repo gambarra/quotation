@@ -12,11 +12,11 @@ namespace Quotation.Domain.Aggregates.CurrencyAgg.Handlers {
 
 
         private readonly ICurrencyRepository currencyRepository;
-        private readonly IUnitOfWork unitOfWork;
+        
 
-        public CurrencyCommandHandler(ICurrencyRepository currencyRepository, IUnitOfWork unitOfWork, IEventBus eventBus) : base(eventBus) {
+        public CurrencyCommandHandler(ICurrencyRepository currencyRepository, IUnitOfWork unitOfWork) : base(unitOfWork) {
             this.currencyRepository = currencyRepository;
-            this.unitOfWork = unitOfWork;
+            
         }
 
         public async Task<CommandResult<Currency>> Handle(CreateCurrencyCommand request, CancellationToken cancellationToken) {
@@ -29,7 +29,7 @@ namespace Quotation.Domain.Aggregates.CurrencyAgg.Handlers {
             currency = new Currency(request.Name, request.CurrencyIso);
 
             await currencyRepository.Add(currency);
-            unitOfWork.Commit();
+         
             PublishEvents(currency);
             return CommandResult<Currency>.Success(currency);
         }
@@ -44,7 +44,7 @@ namespace Quotation.Domain.Aggregates.CurrencyAgg.Handlers {
 
             currency.Update(request.Name);
             currencyRepository.Update(currency);
-            unitOfWork.Commit();
+          
             PublishEvents(currency);
 
             return CommandResult<Currency>.Success(currency);

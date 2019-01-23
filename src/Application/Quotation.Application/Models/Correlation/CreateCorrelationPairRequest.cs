@@ -3,9 +3,9 @@
 namespace Quotation.Application.Models {
     public class CreateCorrelationPairRequest {
 
-        public string BaseCurrency { get; set; }
-        public string QuoteCurrency { get; set; }
+        public string BaseCurrencyIso { get; set; }
+        public string QuoteCurrencyIso { get; set; }
         public decimal Coefficient { get; set; }
-        public DateTime QuoquotationDate { get; set; }
+        public DateTime QuotationDate { get; set; }
     }
 }

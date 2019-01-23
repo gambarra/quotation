@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Quotation.Application.Services;
 using Quotation.Application.Services.Interfaces;
 using Quotation.Domain.Aggregates.CurrencyAgg.Repository;
+using Quotation.Domain.Aggregates.QuotationAgg.Repository;
 using Quotation.Domain.Seedwork;
 using Quotation.Infra.Data.Repositories;
 using Quotation.Infra.Data.Seedwork;
@@ -23,7 +24,7 @@ namespace Quotation.Infra.Ioc {
                .AddSingleton<IEventBus,MockEventBus>()
                .AddScoped<IUnitOfWork, UnitOfWork>()
                .AddScoped<Context>()
-
+               .AddTransient<ICorrelationPairRepository,CorrelationPairRepository>()
                .AddTransient<ICurrencyRepository, CurrencyRepository>()
                .AddTransient<ICurrencyAppService, CurrencyAppService>()
                .AddTransient<IQuotationQueriesRepository, QuotationQueriesRepository>()

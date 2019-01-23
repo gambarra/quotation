@@ -13,7 +13,7 @@ namespace Quotation.Application.Profiles {
         private void MapCreateCorrelationPair() {
             CreateMap<CreateCorrelationPairRequest, CreateCorrelationPairCommand>()
                .ForMember(p => p.Coefficient, opt => opt.MapFrom(o => o.Coefficient))
-               .ForMember(p => p.QuotationDate, opt => opt.MapFrom(o => o.QuoquotationDate))
+               .ForMember(p => p.QuotationDate, opt => opt.MapFrom(o => o.QuotationDate))
                .ForMember(p => p.QuoteCurrencyId, opt => opt.Ignore())
                .ForMember(p => p.BaseCurrencyId, opt => opt.Ignore());
 

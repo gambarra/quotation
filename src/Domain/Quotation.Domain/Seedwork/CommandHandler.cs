@@ -3,13 +3,13 @@
 namespace Quotation.Domain.Seedwork {
     public abstract class CommandHandler<TEntity> where TEntity : Entity {
 
-        public CommandHandler(IEventBus eventBus) {
-            this.eventBus = eventBus;
+        public CommandHandler(IUnitOfWork unitOfWork) {
+            this.unitOfWork = unitOfWork;
         }
-        private readonly IEventBus eventBus;
+        private readonly IUnitOfWork unitOfWork;
 
         protected void PublishEvents(TEntity entity) {
-            eventBus.AddEvents(entity.Events);
+            unitOfWork.AddEvents(entity.Events);
         }
     }
 }

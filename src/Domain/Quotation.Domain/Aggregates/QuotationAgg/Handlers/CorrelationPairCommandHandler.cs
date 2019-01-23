@@ -6,12 +6,13 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace Quotation.Domain.Aggregates.QuotationAgg.Handlers {
-    public class CorrelationPairCommandHandler :
+    public class CorrelationPairCommandHandler : CommandHandler<CorrelationPair>,
          IRequestHandler<CreateCorrelationPairCommand, CommandResult<CorrelationPair>> {
 
         private readonly ICorrelationPairRepository correlationPairRepository;
 
-        public CorrelationPairCommandHandler(ICorrelationPairRepository correlationPairRepository) {
+
+        public CorrelationPairCommandHandler(ICorrelationPairRepository correlationPairRepository,IUnitOfWork unitOfWork):base(unitOfWork) {
             this.correlationPairRepository = correlationPairRepository;
         }
         public async Task<CommandResult<CorrelationPair>> Handle(CreateCorrelationPairCommand request, CancellationToken cancellationToken) {
@@ -25,6 +26,7 @@ namespace Quotation.Domain.Aggregates.QuotationAgg.Handlers {
 
             correlation = new CorrelationPair(request.BaseCurrencyId, request.QuoteCurrencyId, request.Coefficient, request.QuotationDate);
             await correlationPairRepository.Add(correlation);
+            this.PublishEvents(correlation);
             return CommandResult<CorrelationPair>.Success(correlation);
         }
     }
