@@ -4,8 +4,4 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Quotation.Specification\Quotation.Helper.csproj" />
-  </ItemGroup>
-
 </Project>

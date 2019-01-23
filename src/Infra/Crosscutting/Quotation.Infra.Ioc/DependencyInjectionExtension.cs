@@ -8,6 +8,7 @@ using Quotation.Infra.Data.Repositories;
 using Quotation.Infra.Data.Seedwork;
 using Quotation.Infra.EventBus;
 using Quotation.Infra.Mapper;
+using Quotation.Queries.Aggregates.QuotationAgg.Repository;
 using System;
 using System.Reflection;
 
@@ -25,7 +26,9 @@ namespace Quotation.Infra.Ioc {
 
                .AddTransient<ICurrencyRepository, CurrencyRepository>()
                .AddTransient<ICurrencyAppService, CurrencyAppService>()
+               .AddTransient<IQuotationQueriesRepository, QuotationQueriesRepository>()
                .AddTransient<IQuotationAppService, QuotationAppService>();
+
 
             services
                .AddMediatR(typeof(Entity));

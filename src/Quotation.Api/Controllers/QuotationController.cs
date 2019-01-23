@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Quotation.Application.GraphQL.Queries;
 using Quotation.Application.Models;
+using Quotation.Application.Models.Quotation;
 using Quotation.Application.Services.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Quotation.Api.Controllers {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class QuotationController: ControllerBase {
+    public class QuotationController : ControllerBase {
 
         private readonly IQuotationAppService quotationAppService;
         public QuotationController(IQuotationAppService quotationAppService) {
@@ -26,14 +25,14 @@ namespace Quotation.Api.Controllers {
             else
                 return BadRequest(response.Erros);
         }
-        
-        [HttpPost("query")]
-        public  async Task<IActionResult> Post([FromBody]GraphQLQuery query) {
-            var result = await quotationAppService.GetQuotations(query);
 
-            if (result.Errors?.Count > 0) {
-                return BadRequest();
-            }
+        [HttpGet]
+        public IActionResult GetQuotation([FromQuery]GetQuotationRequest query) {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorResponse());
+
+            var result = quotationAppService.GetQuotations(query);
             return Ok(result);
         }
     }

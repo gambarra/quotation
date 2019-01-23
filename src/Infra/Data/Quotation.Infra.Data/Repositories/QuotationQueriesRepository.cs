@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq.Expressions;
+using ExpressionExtensionSQL.Dapper;
+using Quotation.Helper;
 
 namespace Quotation.Infra.Data.Repositories {
     public class QuotationQueriesRepository : IQuotationQueriesRepository {
@@ -15,7 +17,7 @@ namespace Quotation.Infra.Data.Repositories {
         public QuotationQueriesRepository(Context context) {
             this.context = context;
         }
-        public IList<QuotationModel> Find(Expression<Func<QuotationModel, bool>> expression) {
+        public IList<QuotationModel> Find(Specification<QuotationModel> specification) {
 
             string query = $@"
                     SELECT baseCurrency.IsoCode AS BaseCurrencyIso,
@@ -31,7 +33,8 @@ namespace Quotation.Infra.Data.Repositories {
 
             var connection = (SqlConnection)this.context.GetConnection();
 
-            return connection.Query<QuotationModel>(query, expression).AsList();
+            var filter = specification.SatisfiedBy();
+            return connection.Query<QuotationModel>(query,expression: filter).AsList();
         }
     }
 }
