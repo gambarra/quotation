@@ -3,7 +3,7 @@ O que é o Quotation?
 
 Este é o repositório do projeto **Quotation**, um novo microserviço para cotação financeira feito em .Net Core.
 
-O projeto foi desenvolvido utilizando DDD e CQRS como padrão arquitetônico e patterns como SpecificationPattern, Mediator e etc, além de seguir os conceitos de OO e SOLID.
+O projeto foi desenvolvido utilizando **DDD** e **CQRS** como padrão arquitetônico e patterns como SpecificationPattern, Mediator e etc, além de seguir os conceitos de OO e SOLID.
 
 ## Motivação
 Este projeto nasce com o objetivo inicial de demonstrar as principais tecnologias utilizadas, assim como arquitetura, e compartilhar conhecimento com a comunidade.
