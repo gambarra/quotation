@@ -11,7 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MediatR;
+
 using Quotation.Infra.Ioc;
+using Newtonsoft.Json.Serialization;
 
 namespace Quotation.Api {
     public class Startup {
@@ -23,9 +25,17 @@ namespace Quotation.Api {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions(p => {
+                    p.SerializerSettings.ContractResolver = new DefaultContractResolver() {
+                        NamingStrategy = new SnakeCaseNamingStrategy()
+                    };
+                    p.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                });
+            ;
             services.AddDependencies();
-
+            
 
         }
 

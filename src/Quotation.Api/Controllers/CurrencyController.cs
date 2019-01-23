@@ -22,6 +22,9 @@ namespace Quotation.Api.Controllers {
 
         [HttpPost]
         public async Task<ActionResult<BaseResponse>> Create(CreateCurrencyRequest request) {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorResponse());
+
             var response = await currencyAppService.CreateAsync(request);
             if (response.Success)
                 return Ok(response);
