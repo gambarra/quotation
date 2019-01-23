@@ -1,4 +1,5 @@
-﻿using Quotation.Domain.Seedwork;
+﻿using Quotation.Domain.Aggregates.QuotationAgg.Events;
+using Quotation.Domain.Seedwork;
 using System;
 
 namespace Quotation.Domain.Aggregates.QuotationAgg {
@@ -13,6 +14,7 @@ namespace Quotation.Domain.Aggregates.QuotationAgg {
             this.QuoteCurrencyId = quoteCurrencyId;
             this.Coefficient = coeficient;
             this.QuotationDate = quotationDate;
+            this.RaiseEvent(new CorrelationPairCreatedEvent(this));
         }
 
         public int BaseCurrencyId { get; private set; }
