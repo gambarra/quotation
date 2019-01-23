@@ -9,14 +9,17 @@ using System.IO;
 
 namespace Quotation.Infra.Data.Seedwork {
     public class Context : DbContext {
-
+        public Context() {
+            this.Database.Migrate();
+        }
         private DbConnection connection;
 
         public DbSet<Currency> Currency { get; set; }
         public DbSet<CorrelationPair> CorrelationPair { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            
+
+         
             modelBuilder.ForSqlServerUseIdentityColumns();
             modelBuilder.HasDefaultSchema("Quotation");
 
