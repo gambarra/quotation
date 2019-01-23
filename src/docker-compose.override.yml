@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  quotation.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+  sql.database:
+    environment:
+      - SA_PASSWORD=123mudar...
+      - ACCEPT_EULA=Y
+    ports:
+      - "1401:1433"

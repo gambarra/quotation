@@ -1,0 +1,21 @@
+version: '3.4'
+
+networks: 
+  dockersql-network:
+    driver: bridge
+
+services:
+  quotation.api:
+    image: ${DOCKER_REGISTRY-}quotationapi
+    build:
+      context: .
+      dockerfile: Quotation.Api/Dockerfile
+    networks:
+      - dockersql-network
+    depends_on:
+      - sql.database
+      sql.database:
+  container_name: dockersql.database
+    image: microsoft/mssql-server-linux:2017-latest
+    networks:
+      - dockersql-network

@@ -31,9 +31,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotation.Infra.EventBus", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotation.Infra.Ioc", "Infra\Crosscutting\Quotation.Infra.Ioc\Quotation.Infra.Ioc.csproj", "{9DFF0C53-FF69-4C29-8C1D-E09FD421D562}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quotation.Queries", "Quotataion.Queries\Quotation.Queries.csproj", "{84FAE448-38C4-4938-B070-E585F800E262}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotation.Queries", "Quotataion.Queries\Quotation.Queries.csproj", "{84FAE448-38C4-4938-B070-E585F800E262}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quotation.Helper", "Quotation.Specification\Quotation.Helper.csproj", "{10F01217-CF43-43EC-A2BF-669973E391D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quotation.Helper", "Quotation.Specification\Quotation.Helper.csproj", "{10F01217-CF43-43EC-A2BF-669973E391D4}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{29431A59-E99B-4FB6-99F2-2D93A50F27E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{10F01217-CF43-43EC-A2BF-669973E391D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10F01217-CF43-43EC-A2BF-669973E391D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10F01217-CF43-43EC-A2BF-669973E391D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29431A59-E99B-4FB6-99F2-2D93A50F27E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29431A59-E99B-4FB6-99F2-2D93A50F27E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29431A59-E99B-4FB6-99F2-2D93A50F27E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29431A59-E99B-4FB6-99F2-2D93A50F27E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
