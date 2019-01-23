@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="1.50.5" />
+    <PackageReference Include="ExpressionExtensionSQL" Version="1.2.0" />
     <PackageReference Include="ExpressionExtensionSQL.Dapper" Version="1.1.1" />
     <PackageReference Include="MediatR" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.1" />

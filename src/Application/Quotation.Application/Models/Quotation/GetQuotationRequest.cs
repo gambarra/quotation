@@ -8,7 +8,7 @@ namespace Quotation.Application.Models.Quotation {
     public class GetQuotationRequest {
 
         [Required]
-        [StringLength(maximumLength: 3,MinimumLength =3)]
+        [StringLength(maximumLength: 3, MinimumLength = 3)]
         public string BaseCurrencyIso { get; set; }
         [Required]
         [StringLength(maximumLength: 3, MinimumLength = 3)]
@@ -20,8 +20,8 @@ namespace Quotation.Application.Models.Quotation {
 
             Specification<QuotationModel> filter =
                 DirectSpecification<QuotationModel>
-                .Build(p => p.BaseCurrencyIso.Equals(this.BaseCurrencyIso.ToUpper())
-                    && p.QuoteCurrencyIso.Equals(this.BaseCurrencyIso.ToUpper()));
+                .Build(p => p.BaseCurrencyIso == this.BaseCurrencyIso
+                    && p.QuoteCurrencyIso == this.QuoteCurrencyIso);
 
             if (this.QuotationDateEnd.HasValue)
                 filter &= DirectSpecification<QuotationModel>
