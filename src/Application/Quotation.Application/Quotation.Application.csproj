@@ -4,9 +4,15 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\workfolder\quotation\src\Application\Quotation.Application\Quotation.Application.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="Bogus" Version="25.0.4" />
     <PackageReference Include="MediatR" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Examples" Version="2.9.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -14,6 +20,12 @@
     <ProjectReference Include="..\..\Quotataion.Queries\Quotation.Queries.csproj" />
     <ProjectReference Include="..\..\Quotation.Infra.Mapper\Quotation.Infra.Mapper.csproj" />
     <ProjectReference Include="..\..\Quotation.Specification\Quotation.Helper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Quotation.Application.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

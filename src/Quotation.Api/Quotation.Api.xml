@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Quotation.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Quotation.Api.Controllers.CurrencyController.Create(Quotation.Application.Models.Currency.CreateCurrencyRequest)">
+            <summary>
+            Create Currency
+            </summary>
+            <param name="request"></param>
+            <response code="201">Currency Created</response>
+        </member>
+        <member name="M:Quotation.Api.Controllers.QuotationController.Create(Quotation.Application.Models.CreateCorrelationPairRequest)">
+            <summary>
+            Create Quotation
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Quotation.Api.Controllers.QuotationController.GetQuotation(Quotation.Application.Models.Quotation.GetQuotationRequest)">
+            <summary>
+            Get Quotation by filter
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Quotation.Api.Swagger.CustomSchemaIds">
+            <summary>
+            Custom Schema Ids
+            </summary>
+        </member>
+        <member name="M:Quotation.Api.Swagger.CustomSchemaIds.Format(System.Type)">
+            <summary>
+            Custom Schema Ids
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:Quotation.Api.Swagger.SwaggerIgnore.#ctor(System.String[])">
+            <summary>
+            Ignores the request when coming from Swagger. 
+            
+            Will return a default OK result.
+            
+            Handy if you want to allow the "try" button, but not allow changes to entities; such as HttpDelete
+            </summary>
+            <param name="ignoreMethods">List of methods to ignore; get, delete etc</param>
+        </member>
+    </members>
+</doc>

@@ -1,12 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Quotation.Application.Models;
+using Quotation.Application.Models.Correlation;
 using Quotation.Application.Models.Quotation;
 using Quotation.Application.Services.Interfaces;
+using Swashbuckle.AspNetCore.Examples;
 using System;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Quotation.Api.Controllers {
+
+    [Produces("application/json")]
     [Route("api/v1/[controller]")]
     [ApiController]
     public class QuotationController : ControllerBase {
@@ -17,8 +22,15 @@ namespace Quotation.Api.Controllers {
             this.quotationAppService = quotationAppService ?? throw new ArgumentNullException(nameof(quotationAppService));
         }
 
+        /// <summary>
+        /// Create Quotation
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<BaseResponse>> Create(CreateCorrelationPairRequest request) {
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Created)]
+        public async Task<IActionResult> Create(CreateCorrelationPairRequest request) {
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorResponse());
@@ -29,9 +41,15 @@ namespace Quotation.Api.Controllers {
             else
                 return BadRequest(response.Erros);
         }
-
+        /// <summary>
+        /// Get Quotation by filter
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult GetQuotation([FromQuery]GetQuotationRequest query) {
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetQuotation([FromQuery]GetQuotationRequest query) {
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorResponse());
