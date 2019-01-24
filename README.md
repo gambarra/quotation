@@ -15,6 +15,7 @@ Este projeto nasce com o objetivo inicial de demonstrar as principais tecnologia
 ```docker
 docker-compose -up
 ```
+A aplicação será executada em http://localhost:5000 para vializar a docs e entender os endpoints basta executar no navegador http://localhost:5000/docs
 
 # Wiki
 A [Wiki](https://github.com/gambarra/quotation/wiki/home) traz mais detalhes sobre a organização do projeto e sua estrutura
